@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <ctype.h>
 
 #define BUFSIZE 4096
 
@@ -16,10 +15,10 @@ int main()
             printf("%s", buffer);
             offset = 0;
         }
-        if (red == '\n' || red == '\r') {
+        if (last_line && (red == '\n' || red == '\r')) {
             continue;
         }
-        if (red == ' ' && last_line == 0) {
+        if ((red == ' ' || red == '\n') && last_line == 0) {
             buffer[offset] = '\0';
             printf("%s\n", buffer);
             offset = 0;
